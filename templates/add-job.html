@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+        {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+        {% endfor %}
+
+        <script type="text/javascript">
+        function ChoiceDevice(el)
+        {
+         var status = document.getElementById("status");
+         status.innerHTML = el.options[el.selectedIndex].value;
+         list_inv = Device.query.filter(Device.name==el.options[el.selectedIndex].value).all();
+         href="add-job.html";
+         }
+        </script>
+
+        <div class="main">
+            <div class="tableRow"><p>
+                <form action="/add-job" method="post" class="form-contact">
+                <p><label>Дата:  </label> <input type="date" size=100px name="date" value="" requied />
+                <p><label>Выбрать устройство:</label>
+                <select name="name_select" size="1" >
+                    {% for u in list_sn %}
+                        <option value='{{u.sn}}'>{{u.sn}}</option>
+                    {% endfor %}
+                </select></p>
+                <label id="status"></label>
+
+                <p><label>Вид Работы</label></p><br>
+                <p><textarea name="type_work" rows=6 cols=57></textarea>
+
+                <p><label>Комментарии</label></p><br>
+                <p><textarea name="note" rows=5 cols=57></textarea>
+                <br><br>
+                <p><input type="submit" value="Добавить в карточку" />
+                </form>
+            </div>
+
+        </div>
+{% endblock %}

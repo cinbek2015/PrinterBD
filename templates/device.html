@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+    {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+
+    <div class="main">
+        <div class="tableRow"><p>
+            <form action="/device" method="post" class="form-contact" >
+            <ul>
+                <h2><b>{{ name.name }} сер.: {{ name.sn }} инв.: {{ name.inv }}</b></h2>
+                {% for n in card %}
+                    <li><b><left>{{n.date.strftime('%Y-%m-%d')}}</left></b>
+                        <p>{{ n.type_work }}</p>
+                        <p>{{n.note }}</p></li>
+                {% endfor %}
+            </ul>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

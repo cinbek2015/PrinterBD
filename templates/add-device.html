@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+    {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+    <div class="main">
+        <div class="tableRow"><p>
+            <form action="/add-device" method="post" class="form-contact">
+            <p><label>Наименование  устройства:  </label> <input type="text" size=40px name="name" value="" requied />
+            <p><label>Инвентарный № устройства:  </label> <input type="text" size=40px name="inv" value="" requied />
+            <p><label>Серийный № устройства:     </label> <input type="text" size=40px name="sn" value="" requied />
+            <p><label>Кабинет (00-списан, 01-на складе, 02-на ремонте):</label> <input type="text" size=40px name="kab" value="" requied />
+            <p><label>Дата ввода в эксплуатацию:  </label> <input type="date" size=40px name="data_vvoda" value="" requied />
+            <p><label>Материально ответственное лицо выбрать:</label>
+
+            <select name="comp_select" size="3">
+                {% for u in list %}
+                    <option value='{{u.fio}}'>{{u.fio}}</option>
+                {% endfor %}
+            </select></p>
+            <p><input type="submit" value="Добавить устройство" />
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}

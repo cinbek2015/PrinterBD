@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+		{% block title -%}
+			{% if title %}
+					 <title>Устройства СевКавНИПИгаз - {{title}}</title>
+			{% else %}
+					 <title>Устройства СевКавНИПИгаз</title>
+			{% endif %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block content -%}
+				 {%- block mainmenu -%}
+					<ul  class="mainmenu">
+								<li><a href="{{url_for('index')}}">Главная</a></li>
+                                <li><a href="{{url_for('find_device')}}">Поиск</a></li>
+                                <li><a href="{{url_for('add_device')}}">Устройства</a></li>
+                                <li><a href="{{url_for('add_mol')}}">МОЛ</a></li>
+                                <li><a href="{{url_for('add_job')}}">Карточки</a></li>
+                                <li><a href="{{url_for('about')}}">О сайте</a></li>
+					</ul>
+				 {% endblock mainmenu -%}
+				 <div class="clear"></div>
+				 <div class="content">
+				 {% if title -%}
+					<h1>{{title}}</h1>
+							 {% else -%}
+					<h1>Устройства СевКавНИПИгаз</h1>
+				 {% endif -%}
+		{% endblock -%}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+     {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+    <form action="/find-device" method="post" class="form-contact">
+    <p><label>Имя устройства:  </label> <input type="text" size=40px name="name_device" value="" requied />
+    <p><label>Серийный номер:  </label> <input type="text" size=40px name="sn" value="" requied />
+    <p><input type="submit" value="Искать" />
+    </form>
+
+    <form action="/save_file" method="get" class="form-contact">
+    <ul>
+        {% for n in list_name %}
+            <li><b><a href="device/{{n.id }}">{{n.name}}/{{ n.inv }}/{{n.sn }}/{{ n.kab }}/{{ n.mol.fio }}</a></b></li>
+        {% endfor %}
+
+    {% if list_name%}
+        <p style="text-align: center"><button formaction="/save_file/{{ text }}">Экспортировать_number</button>
+
+    {% endif %}
+    </ul>
+    </form>
+{% endblock %}

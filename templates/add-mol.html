@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+    {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+<div class="main">
+    <div class="tableRow"><p>
+    <form action="/add-mol" method="post" class="form-contact">
+    <p><label>Ф.И.О. ( Иванов И. И. ): </label> <input type="text" size=50px name="fio" value="" requied />
+    <p><label>Отдел МОЛ Общества: </label> <input type="text" size=50px name="department" value="" requied />
+    <p><input type="submit" value="Добавить МОЛ в базу" />
+    </form>
+    </div>
+</div>
+{% endblock %}
