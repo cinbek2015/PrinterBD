@@ -105,7 +105,7 @@ def save_file(text):
         text = [x.replace("'", "") for x in text]
         for n in range(len(text)):
             print(text[n], file=output)
-        flash('Данные успешно занесены в базу данных', category='success')
+        flash('Данные успешно экспортированы', category='success')
 
     return render_template("find-device.html", title="Поиск устройств", menu=menu)
 
